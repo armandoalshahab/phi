@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Lee Wangenheim", "Rebecca Hunter", "Adam Hunter"]
   spec.email         = ["lwangenheim@gmail.com", "hrmrebecca@gmail.com", "adamhunter@me.com"]
   spec.summary       = %q{Command line function to output the Philosophy Index of a Wikipedia article.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
+  # spec.description   = %q{TODO: Write a longer description. Optional.}
   spec.homepage      = ""
   spec.license       = "MIT"
 
