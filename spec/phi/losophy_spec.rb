@@ -9,7 +9,6 @@ describe Phi::Losophy do
   end
 
   it "can calculate the index" do 
-    # binding.pry
     expect(instance.index).to eq 19
   end
 

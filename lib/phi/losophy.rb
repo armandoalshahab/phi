@@ -14,7 +14,7 @@ module Phi
     end
     
     def inspect
-      "#<Phi::Losophy:#{term}>"
+      "#<#{self.class.name}:#{term}>"
     end
 
     def pages

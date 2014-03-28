@@ -16,15 +16,19 @@ module Phi
       def next
         @next ||= Page.new(next_term, connection)
       end
-      
+
+      def inspect
+        "#<#{self.class.name}:#{term}>"
+      end
+
       private
 
       def next_term
-        html.css(selector).attr("href").value[6..-1]
+        Node.new(html.css(selector)).anchor.attr("href")[6..-1]
       end
 
       def selector
-        %q{#mw-content-text > p:first > a:first[href^='/wiki']}
+        %q{#mw-content-text > p:first}# > a:first[href^='/wiki']}
       end
 
       def html
