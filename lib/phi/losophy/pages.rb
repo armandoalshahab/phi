@@ -14,6 +14,7 @@ module Phi
       def each 
         until current_page.philosophy?
           guard_max_pages!
+          puts "Now browsing #{current_page.term}"
           yield self.next 
         end
       end
