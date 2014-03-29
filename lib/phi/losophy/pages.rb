@@ -17,6 +17,7 @@ module Phi
           puts "Now browsing #{current_page.term}"
           yield self.next 
         end
+          puts "Found Philosophy"
       end
 
       def current_page
