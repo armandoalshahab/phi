@@ -4,8 +4,8 @@ module Phi
       include Enumerable 
       extend Forwardable
       
-      attr_accessor :browsed
-      attr_reader :losophy, :pages
+      # attr_accessor :browsed
+      attr_reader :losophy, :pages, :browsed
 
       def initialize(losophy)
         @losophy = losophy
