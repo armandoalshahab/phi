@@ -4,20 +4,32 @@ module Phi
       include Enumerable 
       extend Forwardable
       
+      attr_accessor :browsed
       attr_reader :losophy, :pages
 
       def initialize(losophy)
         @losophy = losophy
         @pages   = []
+        @browsed = []
       end
 
       def each 
         until current_page.philosophy?
-          guard_max_pages!
-          puts "Now browsing #{current_page.term}"
-          yield self.next 
+          if browsed?
+            puts "#{current_page.term} has entered an infinant loop and will not hit philosophy"
+            puts "The Philosophy Index in this case will reflect the pages from #{term} to the loop causing #{current_page.term}"
+            break
+          else 
+            puts "Now browsing #{current_page.term}"
+            yield self.next
+            guard_max_pages!
+          end
         end
-          puts "Found Philosophy"
+          puts "Found Philosophy" unless browsed? 
+      end
+
+      def browsed?
+        browsed.include? current_page.term
       end
 
       def current_page
@@ -25,6 +37,7 @@ module Phi
       end
 
       def next
+        browsed << current_page.term
         self.current_page = current_page.next
       end
 
