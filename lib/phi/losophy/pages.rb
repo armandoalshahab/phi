@@ -15,7 +15,7 @@ module Phi
       def each 
         until current_page.philosophy?
           if browsed?
-            puts "#{current_page.term} has entered ani infinate loop and will not hit philosophy"
+            puts "#{current_page.term} has entered ani infinite loop and will not hit philosophy"
             puts "The Philosophy Index in this case will reflect the pages from #{term} to the loop causing #{current_page.term}"
             break
           else 
