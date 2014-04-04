@@ -8,6 +8,7 @@ module Phi
 end
 
 require 'phi/losophy'
+require 'phi/losophy/logger'
 require 'phi/losophy/page'
 require 'phi/losophy/page/node'
 require 'phi/losophy/pages'
