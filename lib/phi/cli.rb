@@ -12,8 +12,9 @@ module Phi
     end
 
     def run
-      i = Phi::Losophy.new(term).index
-      puts "The Philosophy Index of #{term} is #{i}."
+      Phi::Losophy.new(term).tap { |phi| puts "The Philosophy Index of #{term} is #{phi.index}." }
+    rescue
+      puts "Philosophy index cannot be calculated"
     end
 
   end

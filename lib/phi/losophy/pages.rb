@@ -3,32 +3,17 @@ module Phi
     class Pages
       include Enumerable 
       extend Forwardable
-      
+      prepend Logger
+
       attr_reader :losophy, :pages, :browsed
 
       def initialize(losophy)
         @losophy = losophy
         @pages   = []
-        @browsed = []
       end
 
       def each 
-        until current_page.philosophy?
-          if browsed?
-            puts "#{current_page.term} has entered ani infinite loop and will not hit philosophy"
-            puts "The Philosophy Index in this case will reflect the pages from #{term} to the loop causing #{current_page.term}"
-            break
-          else 
-            puts "Now browsing #{current_page.term}"
-            yield self.next
-            guard_max_pages!
-          end
-        end
-          puts "Found Philosophy" unless browsed? 
-      end
-
-      def browsed?
-        browsed.include? current_page.term
+        yield self.next until current_page.philosophy?
       end
 
       def current_page
@@ -36,12 +21,13 @@ module Phi
       end
 
       def next
-        browsed << current_page.term
+        infinite_loop!
+        max_pages!
         self.current_page = current_page.next
       end
 
       private
- 
+
       def_delegators :losophy, :term, :connection
 
       def first_page
@@ -52,12 +38,18 @@ module Phi
         pages << @current_page = page
       end
 
-      def guard_max_pages!
-        return if pages.count <= Phi.max
-        raise MaximumPages.new("max pages (#{pages.count}) have been crawled")
+      def max_pages!
+        return if pages.count < Phi.max
+        raise MaximumPages.new("Max pages (#{pages.count}) have been crawled")
+      end
+
+      def infinite_loop!
+        return unless pages.map(&:term).include? current_page.next_term
+        raise InfiniteLoop.new("#{current_page.next_term} would enter an infinite loop and will not hit philosophy")
       end
 
       MaximumPages = Class.new(StandardError)
+      InfiniteLoop = Class.new(StandardError)
     end
   end
 end
