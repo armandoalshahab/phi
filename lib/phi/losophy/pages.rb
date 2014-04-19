@@ -28,8 +28,14 @@ module Phi
       end
 
       def browsed?
+        # pages.map(&:term).include? current_page.term
         browsed.include? current_page.term
       end
+
+      # def browsed
+      #   # pages.map { |page| page.term }
+      #   pages.map(&:term)
+      # end
 
       def current_page
         @current_page || self.current_page = first_page
