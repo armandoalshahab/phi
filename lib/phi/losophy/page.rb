@@ -21,11 +21,11 @@ module Phi
         "#<#{self.class.name}:#{term}>"
       end
 
-      private
-
       def next_term
         Node.new(html.css(selector)).anchor.attr("href")[6..-1]
       end
+
+      private
 
       def selector
         %q{#mw-content-text > p:first}# > a:first[href^='/wiki']}

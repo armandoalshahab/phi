@@ -9,7 +9,7 @@ describe Phi::Losophy do
   end
 
   it "can calculate the index" do 
-    expect(instance.index).to eq 19
+    expect(instance.index).to eq 18
   end
 
   it "injects the term correctly" do 
